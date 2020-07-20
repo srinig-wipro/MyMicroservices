@@ -1,0 +1,6 @@
+2020-05-04 12:30:54,593 WARN ap.sb.Lab1Application$$EnhancerBySpringCGLIB$$9eca0904 [main] A WARN Message
+2020-05-04 12:30:54,597 ERROR ap.sb.Lab1Application$$EnhancerBySpringCGLIB$$9eca0904 [main] An ERROR Message
+2020-05-04 12:41:21,889 WARN ap.sb.Lab1Application$$EnhancerBySpringCGLIB$$10cfd529 [main] A WARN Message
+2020-05-04 12:41:21,892 ERROR ap.sb.Lab1Application$$EnhancerBySpringCGLIB$$10cfd529 [main] An ERROR Message
+2020-05-04 15:03:00,750 WARN ap.sb.Lab1Application$$EnhancerBySpringCGLIB$$92aab51e [main] A WARN Message
+2020-05-04 15:03:00,754 ERROR ap.sb.Lab1Application$$EnhancerBySpringCGLIB$$92aab51e [main] An ERROR Message

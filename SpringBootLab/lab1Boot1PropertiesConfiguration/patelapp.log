@@ -1,0 +1,4 @@
+2020-06-17 09:51:00,771 WARN ap.sb.Lab1Env$$EnhancerBySpringCGLIB$$bcf0c154 [main] A WARN Message
+2020-06-17 09:51:00,783 ERROR ap.sb.Lab1Env$$EnhancerBySpringCGLIB$$bcf0c154 [main] An ERROR Message
+2020-06-17 10:32:41,470 WARN ap.sb.Lab1Env$$EnhancerBySpringCGLIB$$fff2b087 [main] A WARN Message
+2020-06-17 10:32:41,476 ERROR ap.sb.Lab1Env$$EnhancerBySpringCGLIB$$fff2b087 [main] An ERROR Message
