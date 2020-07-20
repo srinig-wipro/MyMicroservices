@@ -1,0 +1,200 @@
+Agenda
+		* Quick hands-On queries
+	* Configuring Artifactory / 
+	* Tomcat etc., within pom.xml
+	* DB Exaple
+	* SonarQube Integration
+	
+	* Selenium Testing
+	
+	Continuous Integration
+		initial point (input) - Source(s) - SCM
+			Application
+			UI
+				- HML/JS/CSS
+			DB
+			Test
+				- Unit
+				- Integration
+				- System			
+			Config
+				- MANIFEST
+				- Deploy Descriptor
+				- Provisioning Servers
+				- Provisioning Appln
+		Process
+			- artifact
+			- Conditionally	( tests & Code review (Static Code Analysis), Modules)		
+			
+		Outcome (output)
+			- Deploy to Artifactory
+			- Deploy artifact in to test environment
+			- Deploy Reports
+			
+		=> to procedd QA
+		
+	Continuous Delivery ( ILP 2)
+		Input
+			- Source(s) 
+			- Artifact
+			- Installed Application (test env.)
+		Process
+			- QA ( Performance, Load, Code review (Code Coverage) etc.,)
+		Output
+			- Ready for Production (UAT)
+			
+	Example 1
+		* Source - Test (Unit) - Code Review - Package - Code Review (SonarQube)  - Deploy
+		
+	Example 2
+		* Get Artifact from Artifactory - Test (Selenium) - Deploy
+	
+	Example 3
+		* Get Artifact from Artifactory - Deploy
+		
+	
+	- Test(Selenium)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	mvn deploy
+	
+	mvn compile
+	pom.xml
+	src
+		- main/java
+			x.java
+			y.java
+			com.wipro.z.java
+			
+			======> All Application source files are compiled
+				target/classes/
+					- x.class
+					- y.class
+					- com.wipro.z.class
+					
+	mvn test-compile
+	pom.xml
+	src
+		- main/java
+			x.java
+			y.java
+			com.wipro.z.java
+			
+		- test/java
+			xTest.java
+			yTest.java
+			com.wipro.zTest.java
+			
+			======> All Application source files are compiled
+				target/classes/
+					- x.class
+					- y.class
+					- com.wipro.z.class	
+			======> ALso, All test source files are compiled
+					target/test-classes/
+					- xTest.class
+					- yTest.class
+					- com.wipro.zTest.class	
+		
+	mvn test
+		Compiles application source files +
+		test source files +
+		Test cases gets executed +
+		Test report generated
+		
+	mvn package
+		Compiles application source files +
+		test source files +
+		Test cases gets executed +
+		Test report generated +
+		artifact generated and placed within target folder under workspace
+		
+	mvn install
+		Compiles application source files +
+		test source files +
+		Test cases gets executed +
+		Test report generated +
+		artifact generated and placed within target folder under workspace +
+		artifact placed within local repository path as defined in maven settings.xml
+			(by defaulty .m2 folder under user)
+			
+	
+	Note: If any step failed subsequent step will be NOT be continued to execute
+	
+	Command Vs Goal
+	
+	To Run Java Application
+		* x.class		=> java x		system = console/command line
+		* y.jar			=> java -jar 	system = console/command line
+			- a.class
+			- b.class
+			- c.class
+		* z.war			=> Web Application = HTTP / Web Server
+		* .ear
+		* .apk
+		
+	a.class	
+		public static void main(String[] args)
+		()
+		()
+	b.class	
+		public static void main(String[] args)
+		()
+		()
+	c.class	
+		public static void main(String[] args)
+		()
+		()
+		
+	=> While packaging, one can specify entry point for execution => MANIFEST
+	
+	
+	mvn clean package
+	mvn clean install
+	mvn package
+	
+	target/classes/	
+		- x.class
+		- y.class
+		- z.class
+		
+	If built without clean 
+	target/classes/
+		- x.class 	(new)
+				- y.class	(old, because not cleaned: y doesn't exist in current build process)
+		- z.class	(new)
+
+	artifact.jar
+		100 KB
+		
+		100-y KB
+	
+	
+	Life Cycle
+		1. Default ( compile-test-package-install-deploy) +> invalid mvn package
+		2. Clean	( pre-clean, clean, post-clean) +> mvn clean  => mvn clean package , mvn package site
+		3. Site	(pre-site, site, post-site, site-deploy)
+		
+		
+
+	
+
+	
+		
+		
+		
+		
+		
+		
+	
+	

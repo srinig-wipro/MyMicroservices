@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- Handler Mapping -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="Home.htm">ufn</prop>
+				<prop key="CreateNewAccountForm.htm">ufn</prop>
+				<prop key="GetAccountBalance.htm">ufn</prop>
+				<prop key="DisplayAccountORCustomers.htm">ufn</prop>
+				<prop key="TransferFunds.htm">ufn</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<!-- Controller classes -->
+	<bean name="ufn"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	<!-- <bean id="lsc" class="com.nt.controller.ListStudentsController"> <constructor-arg 
+		ref="studService"/> </bean> <bean id="esc" class="com.nt.controller.EditStudentController"> 
+		<constructor-arg ref="studService"/> <property name="formView" value="edit_student"/> 
+		<property name="commandName" value="stCmd"/> <property name="commandClass" 
+		value="com.nt.command.StudentCommand"/> <property name="sessionForm" value="true"/> 
+		</bean> <bean id="dsc" class="com.nt.controller.DeleteStudentController"> 
+		<constructor-arg ref="studService"/> </bean> -->
+
+
+
+	<!-- view Resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+<context:component-scan base-package="com.wipro.bank.controller"/>
+</beans>

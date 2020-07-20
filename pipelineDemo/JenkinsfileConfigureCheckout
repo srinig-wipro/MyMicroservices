@@ -1,0 +1,65 @@
+pipeline { 
+    agent any
+    environment {
+        JAVA_HOME='C:\\Program Files\\Java\\jdk1.8.0_45' 
+		MAVEN_HOME='C:\\maven\\apache-maven-3.3.9'
+    }   
+    stages {
+		stage('Configure') {
+			steps {		
+			echo "MAVEN_HOME=$MAVEN_HOME"
+				bat "$MAVEN_HOME\\bin\\mvn --version"
+			}
+		}
+		
+		stage('Checkout') {
+			steps {
+				git 'http://wosggitlab.wipro.com/AVITEPA/myPipelines'
+			}
+		}
+	
+        stage('compile') {     
+            steps {  
+		        echo "Welcome to compile"
+		    }
+        }		
+		
+		stage('Deploy on server') {
+            steps {
+                  echo "Welcome to Deploy on production server"
+            }
+		}	
+    }
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful';
+							script{
+							try {
+					if('SUCCESS' != currentBuild.getPreviousBuild().getResult()) {
+						//mail to: '<to>', subject: '<subject>', body: '<body>', attachLog: true
+						mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Back to normal", body: "Build back to normal: ${env.BUILD_URL}", attachLog: true);
+					} else {
+						mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Back success", body: "Build success: ${env.BUILD_URL}", attachLog: true);
+					}
+				} catch (e) {
+					mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Failure!", body: "Build failed ${env.BUILD_URL}", attachLog: true);
+				}
+				}
+        }
+        failure {
+            echo 'This will run only if failed'
+			script{
+							try {
+			mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Back success", body: "Build success: ${env.BUILD_URL}", attachLog: true);
+			}catch (e) {
+					mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Failure!", body: "Build failed ${env.BUILD_URL}", attachLog: true);
+				}
+        	}
+	}
+}
+}
+
+

@@ -1,0 +1,64 @@
+pipeline { 
+    agent {
+        node {
+            label 'master'  
+        }    
+    }
+    environment {
+        JAVA_HOME='C:\\Program Files\\Java\\jdk1.8.0_45' 
+    }   
+    stages {
+        stage('compile') {     
+            steps {  
+		        echo "Welcome to compile"
+		    }
+        }
+		
+		stage('Unit Testing') {
+            steps {
+                  echo "Welcome to Unit Testing"
+            }
+        }
+		
+		stage('Integration Testing') {
+            steps {
+                  echo "Welcome to Integration Testing"
+            }
+        }
+		
+		stage('packaging') {
+            steps {
+                 echo "Welcome to packaging"
+            }
+        }
+		
+		stage('Deploy on production server') {
+            steps {
+                  echo "Welcome to Deploy on production server"
+            }
+		}	
+    }
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful';
+							script{
+							try {
+					if('SUCCESS' != currentBuild.getPreviousBuild().getResult()) {
+						mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Back to normal", body: "Build back to normal: ${env.BUILD_URL}.");
+					} else {
+						mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Back success", body: "Build success: ${env.BUILD_URL}.");
+					}
+				} catch (e) {
+					mail (to: 'avinash.patel@wipro.com', subject: "${env.JOB_NAME}' (${env.BUILD_NUMBER}) - Failure!", body: "Build failed ${env.BUILD_URL}.");
+				}
+				}
+        }
+        failure {
+            echo 'This will run only if failed'
+        }	}
+	}
+
+
